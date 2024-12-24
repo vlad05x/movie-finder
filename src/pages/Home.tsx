@@ -1,6 +1,15 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Container, Box, Button, CircularProgress, Fade } from "@mui/material";
+import {
+  Container,
+  Box,
+  Button,
+  CircularProgress,
+  Fade,
+  IconButton,
+} from "@mui/material";
+import Brightness4Icon from "@mui/icons-material/Brightness4";
+import Brightness7Icon from "@mui/icons-material/Brightness7";
 import { useTheme } from "../context/ThemeContext";
 import { GenreModal } from "../components/GenreModal";
 import { MovieCard } from "../components/MovieCard";
@@ -55,26 +64,25 @@ export const Home: React.FC = () => {
         background:
           mode === "dark"
             ? "linear-gradient(to right, #141E30, #243B55)"
-            : "linear-gradient(to right, #ffffff, #d3d3d3)", 
+            : "linear-gradient(to right, #d3d3d3, #d3d3d3)",
         color: mode === "dark" ? "#fff" : "#000",
       }}
     >
       <Button
-       variant="contained"
+        variant="contained"
         color="primary"
         onClick={() => setGenre(null)}
-        sx={{position: "absolute", top: 16, left: 16}}
-        >
-          Select genre
+        sx={{ position: "absolute", top: 16, left: 16 }}
+      >
+        Select genre
       </Button>
-      <Button
-        variant="contained"
+      <IconButton
         color="primary"
         onClick={toggleTheme}
         sx={{ position: "absolute", top: 16, right: 16 }}
       >
-        Toggle to {mode === "dark" ? "Light" : "Dark"} Mode
-      </Button>
+        {mode === "dark" ? <Brightness7Icon /> : <Brightness4Icon />}
+      </IconButton>
 
       <Fade in={!genre}>
         <Box>
